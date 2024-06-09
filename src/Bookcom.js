@@ -27,12 +27,19 @@ const Bookcom = () => {
       })
       .catch(error => console.error('Error fetching image:', error));
   }, []); // Empty dependency array ensures this runs only once
-
+  async function addUser(){
+    // let session=await ();
+    const token=session.lastActiveToken.jwt.encoded.payload
+    const jwt_token=session.lastActiveToken.jwt.encoded.header+'.'+session.lastActiveToken.jwt.encoded.payload+'.'+session.lastActiveToken.jwt.encoded.signature
+    const i_token=await session.getToken()
+    console.log(i_token)
+    let response=await axios.post('http://localhost:8080/Bookcom/user/register',{'userid':user.id},{headers:{Authorization:`Bearer ${i_token}`}})
+}
+addUser();
   return (
     <>
-      <Navbar />
+      
       <Content />
-      <Footer />
       <div>
         <h1>Welcome, {user ? user.firstName : 'User'}</h1>
         <p>This is your dashboard.</p>

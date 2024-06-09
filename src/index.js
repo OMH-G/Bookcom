@@ -4,19 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ClerkProvider } from '@clerk/clerk-react'
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const PUBLISHABLE_KEY = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key")
 }
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
         <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-
     <App />
     </ClerkProvider>
 
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
