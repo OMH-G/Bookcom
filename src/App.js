@@ -9,6 +9,7 @@ import ProtectedRoute from './util/ProtectedRoute'; // Import the ProtectedRoute
 import Profile from './components/Profile';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Book from './components/Book';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Bookcom />} />
             <Route path="/book" element={<Card />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/postbook" element={<Book/>}/>
         </Route>
       </Routes>
       <Footer/>

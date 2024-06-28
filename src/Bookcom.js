@@ -13,24 +13,24 @@ const Bookcom = () => {
   useEffect(() => {
     console.log('useEffect triggered');
     // The URL to your servlet
-    const url = 'http://localhost:8080/Bookcom/image';
+    const url = 'http://localhost:8080/Bookcom/book/getImage';
     const jwt_token=session.lastActiveToken.jwt.encoded.header+'.'+session.lastActiveToken.jwt.encoded.payload+'.'+session.lastActiveToken.jwt.encoded.signature
 
     // Fetch the image using Axios
-    axios.get(url, { responseType: 'blob' ,headers:{Authorization:`Bearer ${jwt_token}`}})
+    axios.get(url, {  headers:{Authorization:`Bearer ${jwt_token}`}})
       .then(response => {
         console.log('Image fetched');
-        
+        console.log(response.data)
         // Create a local URL of the blob
-        const localUrl = URL.createObjectURL(response.data);
-        setImageUrl(localUrl);
+        // const localUrl = URL.createObjectURL(response.data);
+        // console.log(localUrl)
+        // setImageUrl(localUrl);
       })
       .catch(error => console.error('Error fetching image:', error));
   }, []); // Empty dependency array ensures this runs only once
   async function addUser(){
     // let session=await ();
     const token=session.lastActiveToken.jwt.encoded.payload
-    const jwt_token=session.lastActiveToken.jwt.encoded.header+'.'+session.lastActiveToken.jwt.encoded.payload+'.'+session.lastActiveToken.jwt.encoded.signature
     const i_token=await session.getToken()
     console.log(i_token)
     let response=await axios.post('http://localhost:8080/Bookcom/user/register',{'userid':user.id},{headers:{Authorization:`Bearer ${i_token}`}})
