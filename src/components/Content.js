@@ -31,7 +31,9 @@ export default function Content() {
           Authorization: `Bearer ${token}`,
         },
       });
-      // setFormData({ ...formData, category: Object.keys(response.data)[0] });
+      response.data['year']=new Date(response.data['year']).getFullYear();
+      console.log(response.data)
+      setFormData(response.data);
       // setCategoryList(response.data);
     } catch (error) {
       console.error('There was an error uploading the book!', error);
@@ -243,26 +245,23 @@ export default function Content() {
                 value={formData.title}
                 onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
+                disabled
+             />
             </div>
 
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
                 Category
               </label>
-              <select
+              <input
                 id="category"
                 name="category"
                 value={formData.category}
-                onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              disabled
               >
-                {Object.keys(categoryList).map((category) => (
-                  <option key={category} value={category}>
-                    {categoryList[category]}
-                  </option>
-                ))}
-              </select>
+                
+              </input>
             </div>
 
             <div className="mb-4">
@@ -276,6 +275,7 @@ export default function Content() {
                 value={formData.author}
                 onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                disabled
               />
             </div>
 
@@ -292,6 +292,7 @@ export default function Content() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 minLength={10}
                 maxLength={12}
+                disabled
               />
             </div>
 
@@ -307,6 +308,7 @@ export default function Content() {
                 onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 min={0}
+              disabled
               />
             </div>
 
@@ -321,6 +323,7 @@ export default function Content() {
                 value={formData.publisher}
                 onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                disabled
               />
             </div>
 
@@ -337,24 +340,11 @@ export default function Content() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 min={1902}
                 max={new Date().getFullYear()}
+                disabled
               />
             </div>
 
-            <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={closeModal}
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              >
-                Cancel
-              </button>
-            </div>
+            
           </form>
         </div>
       </div>
