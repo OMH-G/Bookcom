@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Book from './components/Book';
+import Checkout from './components/Checkout';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/book" element={<Card />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/postbook" element={<Book/>}/>
+            <Route path="/checkout" element={<Checkout/>}/>
         </Route>
       </Routes>
       <Footer/>
