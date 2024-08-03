@@ -129,14 +129,13 @@ function Card() {
   };
 
   return (
-    <>
-  <div>
-    <div className="grid h-screen bg-gradient-to-br from-purple-800 via-violet-900 to-gray-900 lg:grid-cols-3 justify-center">
+    <div>
+    <div className="grid h-full bg-gradient-to-br from-purple-800 via-violet-900 to-gray-900 p-5 gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
       {imageUrls.length !== 0 ? (
         imageUrls.map((item, index) => (
           <div
             key={index}
-            className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-lg border bg-gray-800 shadow-lg m-5 transform transition-transform duration-500 hover:scale-105"
+            className="group flex w-full flex-col self-center overflow-hidden rounded-lg border border-gray-100/30 bg-gray-800 shadow-lg transform transition-transform duration-500 hover:scale-105"
           >
             <a
               className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
@@ -170,51 +169,50 @@ function Card() {
             </a>
             <div className="mt-4 px-5 pb-5">
               <a href="#">
-                <h5 className="text-xl tracking-tight text-white">
-                  {item[0]}
-                </h5>
+                <h5 className="text-xl tracking-tight text-white">{item[0]}</h5>
               </a>
-
-              <button
-                onClick={() => openModal(item)}
-                className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 transform transition-transform duration-300 hover:scale-105"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <div className="flex space-x-2 mt-3">
+                <button
+                  onClick={() => openModal(item)}
+                  className="flex-1 hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-blue-300 transform transition-transform duration-300 hover:scale-105"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 3v2a2 2 0 002 2h2M5 21v-2a2 2 0 012-2h14a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                  />
-                </svg>
-                Edit Book
-              </button>
-              <button
-                onClick={() => deleteBook(item[0])}
-                className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 transform transition-transform duration-300 hover:scale-105"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mr-2 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mr-2 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M15 3v2a2 2 0 002 2h2M5 21v-2a2 2 0 012-2h14a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                  Edit Book
+                </button>
+                <button
+                  onClick={() => deleteBook(item[0])}
+                  className="flex-1 hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-red-300 transform transition-transform duration-300 hover:scale-105"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 7H5m7-4v4m-1 4v4m-4 0v4m5-9v-4m-2 4v4m4 0v4m4-4v4m-4-4v4"
-                  />
-                </svg>
-                Delete Book
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="mr-2 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 7H5m7-4v4m-1 4v4m-4 0v4m5-9v-4m-2 4v4m4 0v4m4-4v4m-4-4v4"
+                    />
+                  </svg>
+                  Delete Book
+                </button>
+              </div>
             </div>
           </div>
         ))
@@ -222,150 +220,162 @@ function Card() {
         <p className="text-white text-xl">No images found.</p>
       )}
     </div>
-  </div>
-
-  {isModalOpen && (
-    <div
-      className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-75 animate-fade-in"
-      onClick={closeModal}
-    >
+  
+    {isModalOpen && (
       <div
-        className="bg-white rounded-lg overflow-hidden w-1/3"
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-75 animate-fade-in"
+        onClick={closeModal}
       >
-        <div className="p-4">
-          <h2 className="text-xl mb-4">{selectedBook ? 'Edit Book' : 'Add Book'}</h2>
-          <form onSubmit={handleFormSubmit}>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                Title
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                value={formData.title}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
-                Category
-              </label>
-              <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              >
-                {Object.keys(categoryList).map((category) => (
-                  <option key={category} value={category}>
-                    {categoryList[category]}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="author">
-                Author
-              </label>
-              <input
-                type="text"
-                id="author"
-                name="author"
-                value={formData.author}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="isbn">
-                ISBN
-              </label>
-              <input
-                type="number"
-                id="isbn"
-                name="isbn"
-                value={formData.isbn}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                minLength={10}
-                maxLength={12}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-                Price
-              </label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                value={formData.price}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                min={0}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="publisher">
-                Publisher
-              </label>
-              <input
-                type="text"
-                id="publisher"
-                name="publisher"
-                value={formData.publisher}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="year">
-                Year
-              </label>
-              <input
-                type="number"
-                id="year"
-                name="year"
-                value={formData.year}
-                onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                min={1902}
-                max={new Date().getFullYear()}
-              />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={closeModal}
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+        <div
+          className="bg-white rounded-lg overflow-hidden w-full max-w-lg mx-2"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="p-4">
+            <h2 className="text-xl mb-4">{selectedBook ? 'Edit Book' : 'Add Book'}</h2>
+            <form onSubmit={handleFormSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
+                  Category
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  {Object.keys(categoryList).map((category) => (
+                    <option key={category} value={category}>
+                      {categoryList[category]}
+                    </option>
+                  ))}
+                </select>
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="author">
+                  Author
+                </label>
+                <input
+                  type="text"
+                  id="author"
+                  name="author"
+                  value={formData.author}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="isbn">
+                  ISBN
+                </label>
+                <input
+                  type="number"
+                  id="isbn"
+                  name="isbn"
+                  value={formData.isbn}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  minLength={10}
+                  maxLength={12}
+                />
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
+                  Price
+                </label>
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  min={0}
+                />
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="publisher">
+                  Publisher
+                </label>
+                <input
+                  type="text"
+                  id="publisher"
+                  name="publisher"
+                  value={formData.publisher}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="year">
+                  Year
+                </label>
+                <input
+                  type="number"
+                  id="year"
+                  name="year"
+                  value={formData.year}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  min={1902}
+                  max={new Date().getFullYear()}
+                />
+              </div>
+  
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  rows="4"
+                ></textarea>
+              </div>
+  
+              <div className="flex items-center justify-between">
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  {selectedBook ? 'Save Changes' : 'Add Book'}
+                </button>
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  )}
-</>
-
+    )}
+  </div>
   
   
   );

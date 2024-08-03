@@ -127,7 +127,6 @@ export default function Content() {
       .post(url,data,{headers: { Authorization: `Bearer ${jwt_token}` } })
       .then((response) => {
         console.log('Book Ordered:', response.data);
-        // setImageUrls((prevUrls) => prevUrls.filter((item) => item[0] !== bookId));
       })
       .catch((error) => console.error('Error deleting book:', error));
   };
